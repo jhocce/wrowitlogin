@@ -8,7 +8,7 @@ from facebook_business.adobjects.adaccount import AdAccount
 from facebook_business.adobjects.adrule import AdRule
 from facebook_business.api import FacebookAdsApi
 
-
+from .models import PermisosF
 
 
 class loginface(View):
@@ -57,38 +57,24 @@ class returnface(View):
 		return super(returnface, self).dispatch(request,*args, **kwargs )
 	def get(self, request,  *args, **kwargs):
 		
-		# code = self.request.GET.get('code')
-
-		# Copyright 2014 Facebook, Inc.
-
-		
-		
-		# access_token = code
 		client_id = '457901605665005'
 		client_secret = 'f5f111abebde1a9a94ae282de45ce0ef'
 		code = self.request.GET.get('code')
 		redirect_uri = 'https://wrowit.herokuapp.com/login/returnface/'
 		url_auth = 'https://graph.facebook.com/v12.0/oauth/access_token'
-		# auth_data = {
-		#  'client_id':client_id,
-		#  'client_secret':client_secret,
-		#  'code':code,
-		#  'redirect_uri':redirect_uri
-		#  }
 
-		# se pide el access_token.
 		resp = requests.get('{0}?client_id={1}&client_secret={2}&code={3}&redirect_uri={4}'.format(url_auth, client_id, client_secret, code, redirect_uri ) )
 
 		try:
-			print("Response---->>> ",resp.json())
-			return HttpResponse("Response---->>>{0} ----".format(resp.json()))
-			# obj = Permisos(**resp.json())
-			# obj.save()
-			# access_token = resp.json()['access_token']
+			
+			obj = PermisosF(**resp.json())
+			obj.save()
+			access_token = resp.json()['access_token']
+			return HttpResponse(access_token)
 		except Exception as e:
 			print(e)
 			return HttpResponse(e)
-
+		# access_token = 'EAAGgdYaMOO0BAFz0I9ZA8TiN6xGCWmoMU1m5ZAeZAxoR6cOgbVkBmgqZB1ZBt0dcNmKpRrB8hIhNjeQUNkZCsQHH1mH22txCXdc7BE5ZApn1JZCdkSfIFM4AYSJuOq0yZAA4UshssNsZBcSKSvPZCLz0MKdZCWPwteUhCVvKHbzfZB4gl8FZBlTRaksPmBNYE8BpTMJXNaNxcPqUiPoeIdhEZAm3UNXp0fwbzOpM6BF3S491z5RwQZDZD'
 		# First we try to get all pages from a user
 		# fields = [
 		#     'access_token',
