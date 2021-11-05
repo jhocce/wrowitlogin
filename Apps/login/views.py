@@ -1,4 +1,5 @@
 import requests
+from urllib.parse import urlencode
 
 from django.shortcuts import render
 from django.views.generic import ListView, View, RedirectView
@@ -80,7 +81,7 @@ class returnface(View):
 			obj.save()
 			access_token = resp.json()['access_token']
 			print("getuser ------->>>>>>>>")
-			a = self.GetUser(access_token=access_token)
+			a = urlencode(self.GetUser(access_token=access_token))
 			print(a)
 			print(type(a))
 			return HttpResponse(a)
