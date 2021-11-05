@@ -54,7 +54,7 @@ class returnface(View):
 	def get(self, request,  *args, **kwargs):
 		
 		code = self.request.GET.get('code')
-		return HttpResponse("prueba->", code)
+		return HttpResponse("prueba->{0}".format(code))
 
 		appkey = '32934847'
 		secret = 'c394309ac3257ee7790787e19c6ca07d'
