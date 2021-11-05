@@ -62,7 +62,6 @@ class returnface(View):
 		campos = 'id%2Cname'
 
 		resp = requests.get("{0}fields={1}&access_token={2}".format(url, campos, access_token))
-		print("getuser", resp.json() )
 		return resp.json()
 
 
@@ -76,13 +75,16 @@ class returnface(View):
 
 		resp = requests.get('{0}?client_id={1}&client_secret={2}&code={3}&redirect_uri={4}'.format(url_auth, client_id, client_secret, code, redirect_uri ) )
 
-		try:
-			
+		try:	
 			obj = PermisosF(**resp.json())
 			obj.save()
 			access_token = resp.json()['access_token']
-		
-			return HttpResponse(self.GetUser(access_token=access_token))
+			print("getuser ------->>>>>>>>")
+			a = self.GetUser(access_token=access_token)
+			print(a)
+			print(type(a))
+			return HttpResponse(a)
+
 		except Exception as e:
 			print(e)
 			return HttpResponse(e)
