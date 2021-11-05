@@ -39,7 +39,7 @@ class loginface(View):
 
 
 
-class auth2(View):
+class returnface(View):
 	""" Vista que recibe la peticion desde el servidor de amazon con los datos necesarios
 	para generar el acces_token el cual debe ser guardado en la base de datos para futuras 
 	peticiones.
@@ -50,7 +50,7 @@ class auth2(View):
 	def dispatch(self, request, *args, **kwargs):
 
 
-		return super(auth2, self).dispatch(request,*args, **kwargs )
+		return super(returnface, self).dispatch(request,*args, **kwargs )
 	def get(self, request,  *args, **kwargs):
 		
 		code = self.request.GET.get('code')
