@@ -54,31 +54,69 @@ class returnface(View):
 	def get(self, request,  *args, **kwargs):
 		
 		code = self.request.GET.get('code')
-		return HttpResponse("prueba->{0}".format(code))
 
-		appkey = '32934847'
-		secret = 'c394309ac3257ee7790787e19c6ca07d'
-		url_auth = 'https://oauth.aliexpress.com/token';
-		auth_data = {
-		 'grant_type':'authorization_code',
-		 'client_id':appkey,
-		 'client_secret':secret,
-		 'code':code,
-		 'sp':'ae',
-		 'redirect_uri':'redirect_uri'
-		 }
+		# Copyright 2014 Facebook, Inc.
 
-		# se pide el access_token.
-		resp = requests.post(url_auth, data=auth_data )
+		
+		from facebook_business.adobjects.adaccount import AdAccount
+		from facebook_business.adobjects.adrule import AdRule
+		from facebook_business.api import FacebookAdsApi
 
-		try:
-			print("Response---->>> ",resp.json())
-			obj = Permisos(**resp.json())
-			obj.save()
-			access_token = resp.json()['access_token']
-		except Exception as e:
-			print(e)
-			return HttpResponse("Ya no puedes iniciar sesion desde este enlace... ")
+		access_token = code
+		app_secret = 'f5f111abebde1a9a94ae282de45ce0ef'
+		ad_account_id = 'act_174036684896239'
+		schedule_interval = 'DAILY'
+		entity_type = 'CAMPAIGN'
+		notification_user_id = '4453085001435900'
+		filter_field = 'reach'
+		filter_value = '1'
+		filter_operator = 'GREATER_THAN'
+		app_id = '457901605665005'
+		FacebookAdsApi.init(access_token=access_token)
+
+		fields = [
+		]
+		params = {
+		    'name': 'Sample SDK Rule',
+		    'schedule_spec': { 'schedule_type': schedule_interval },
+		    'evaluation_spec': { 'evaluation_type': 'SCHEDULE', 'filters': [ { 'field': filter_field, 'value': filter_value, 'operator': filter_operator }, { 'field': 'entity_type', 'value': entity_type, 'operator': 'EQUAL' }, { 'field': 'time_preset', 'value': 'LIFETIME', 'operator': 'EQUAL' } ] },
+		    'execution_spec': { 'execution_type': 'NOTIFICATION', 'execution_options': [ { 'field': 'user_ids', 'value': [notification_user_id], 'operator': 'EQUAL' } ] },
+		}
+		print( )
+
+
+		return HttpResponse("prueba->{0}".format(AdAccount(ad_account_id).create_ad_rules_library(
+		    fields=fields,
+		    params=params,
+		)))
+		
+
+
+
+
+		# appkey = '32934847'
+		# secret = 'c394309ac3257ee7790787e19c6ca07d'
+		# url_auth = 'https://oauth.aliexpress.com/token';
+		# auth_data = {
+		#  'grant_type':'authorization_code',
+		#  'client_id':appkey,
+		#  'client_secret':secret,
+		#  'code':code,
+		#  'sp':'ae',
+		#  'redirect_uri':'redirect_uri'
+		#  }
+
+		# # se pide el access_token.
+		# resp = requests.post(url_auth, data=auth_data )
+
+		# try:
+		# 	print("Response---->>> ",resp.json())
+		# 	obj = Permisos(**resp.json())
+		# 	obj.save()
+		# 	access_token = resp.json()['access_token']
+		# except Exception as e:
+		# 	print(e)
+		# 	return HttpResponse("Ya no puedes iniciar sesion desde este enlace... ")
 
 
 
