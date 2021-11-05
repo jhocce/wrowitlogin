@@ -66,7 +66,7 @@ class returnface(View):
 		# access_token = code
 		client_id = '457901605665005'
 		client_secret = 'f5f111abebde1a9a94ae282de45ce0ef'
-   		code = self.request.GET.get('code')
+		code = self.request.GET.get('code')
 		redirect_uri = 'https://wrowit.herokuapp.com/login/returnface/'
 		url_auth = 'https://graph.facebook.com/v12.0/oauth/access_token'
 		# auth_data = {
