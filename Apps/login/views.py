@@ -81,7 +81,7 @@ class returnface(View):
 
 		try:
 			print("Response---->>> ",resp.json())
-			return HttpResponse("Response---->>>{0} ".format(resp))
+			return HttpResponse("Response---->>>{0} ----".format(resp.json()))
 			# obj = Permisos(**resp.json())
 			# obj.save()
 			# access_token = resp.json()['access_token']
