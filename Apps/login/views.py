@@ -33,7 +33,7 @@ class loginface(View):
 		url = ''
 		
 		url_autorizacion = 'https://www.facebook.com/v12.0/dialog/oauth'
-		redirect_uri = ' https://wrowit.herokuapp.com/'
+		redirect_uri = 'https://wrowit.herokuapp.com/returnface/'
 		return HttpResponseRedirect("{0}?response_type=code&client_id={1}&redirect_uri={2}&state=1212".format(url_autorizacion,client_id,redirect_uri ))
 
 
@@ -54,6 +54,8 @@ class auth2(View):
 	def get(self, request,  *args, **kwargs):
 		
 		code = self.request.GET.get('code')
+		return HttpResponse("prueba->", code)
+
 		appkey = '32934847'
 		secret = 'c394309ac3257ee7790787e19c6ca07d'
 		url_auth = 'https://oauth.aliexpress.com/token';
