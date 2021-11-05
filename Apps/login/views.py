@@ -62,6 +62,7 @@ class returnface(View):
 		campos = 'id%2Cname'
 
 		resp = requests.get("{0}fields={1}&access_token={2}".format(url, campos, access_token))
+		print("getuser", resp.json() )
 		return resp.json()
 
 
