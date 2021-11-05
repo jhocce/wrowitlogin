@@ -33,7 +33,7 @@ class loginface(View):
 		url = ''
 		
 		url_autorizacion = 'https://www.facebook.com/v12.0/dialog/oauth'
-		redirect_uri = 'https://wrowit.herokuapp.com/returnface/'
+		redirect_uri = 'https://wrowit.herokuapp.com/login/returnface/'
 		return HttpResponseRedirect("{0}?response_type=code&client_id={1}&redirect_uri={2}&state=1212".format(url_autorizacion,client_id,redirect_uri ))
 
 
