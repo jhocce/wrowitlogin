@@ -55,6 +55,16 @@ class returnface(View):
 
 
 		return super(returnface, self).dispatch(request,*args, **kwargs )
+
+	def GetUser(self, access_token):
+		
+		url = 'https://graph.facebook.com/v12.0/me?'
+		campos = 'id%2Cname'
+
+		resp = requests.get("{0}fields={1}&access_token={2}".format(url, campos, access_token))
+		return resp.json()
+
+
 	def get(self, request,  *args, **kwargs):
 		
 		client_id = '457901605665005'
@@ -70,10 +80,15 @@ class returnface(View):
 			obj = PermisosF(**resp.json())
 			obj.save()
 			access_token = resp.json()['access_token']
-			return HttpResponse(access_token)
+		
+			return HttpResponse(self.GetUser(access_token=access_token))
 		except Exception as e:
 			print(e)
 			return HttpResponse(e)
+
+
+		
+ 		
 		# access_token = 'EAAGgdYaMOO0BAFz0I9ZA8TiN6xGCWmoMU1m5ZAeZAxoR6cOgbVkBmgqZB1ZBt0dcNmKpRrB8hIhNjeQUNkZCsQHH1mH22txCXdc7BE5ZApn1JZCdkSfIFM4AYSJuOq0yZAA4UshssNsZBcSKSvPZCLz0MKdZCWPwteUhCVvKHbzfZB4gl8FZBlTRaksPmBNYE8BpTMJXNaNxcPqUiPoeIdhEZAm3UNXp0fwbzOpM6BF3S491z5RwQZDZD'
 		# First we try to get all pages from a user
 		# fields = [
