@@ -14,10 +14,7 @@ from .models import PermisosF
 
 class loginface(View):
 
-	""" Esto es solo una vista de redirecionamiento puedes usar la vista redirecwiew generica
-		si lo deseas el resultado deberia ser lo mismo, no hay que modificar estos valores 
-		pues representan las credenciales definidas en la aplicacion creada en el 
-		servidor de aliexpress. """
+	"""  """
 
 
 	template_name = 'index.html'
@@ -27,12 +24,8 @@ class loginface(View):
 		return super(loginface, self).dispatch(request,*args, **kwargs )
 
 	def get(self, request, *args, **kwargs):
-		# https://www.facebook.com/v12.0/dialog/oauth?
-		#   client_id={app-id}
-		#   &redirect_uri={redirect-uri}
-		#   &state={state-param}
-
-
+		
+		# datos de la app
 		client_id = '457901605665005'
 		secret = 'f5f111abebde1a9a94ae282de45ce0ef'
 		url = ''
@@ -45,9 +38,7 @@ class loginface(View):
 
 
 class returnface(View):
-	""" Vista que recibe la peticion desde el servidor de amazon con los datos necesarios
-	para generar el acces_token el cual debe ser guardado en la base de datos para futuras 
-	peticiones.
+	"""
 	"""
 
 	template_name = 'ali/index.html'
@@ -58,32 +49,40 @@ class returnface(View):
 		return super(returnface, self).dispatch(request,*args, **kwargs )
 
 	def GetUser(self, access_token):
-		
+		""" Funcion de obtiene los datos del usuario que nos dio autorizacion """
+		# url de la peticion
 		url = 'https://graph.facebook.com/v12.0/me?'
+		# campos que se esperan consultar
 		campos = 'id,name,email,first_name,last_name,gender,languages'
-
 		resp = requests.get("{0}fields={1}&access_token={2}".format(url, campos, access_token))
 		return resp.json()
 
 
 	def get(self, request,  *args, **kwargs):
-		
+		# datos de la app otra vez...
 		client_id = '457901605665005'
 		client_secret = 'f5f111abebde1a9a94ae282de45ce0ef'
+		# obtener codigo de autorizacion de la redireccion
 		code = self.request.GET.get('code')
+		# URL de redireccion
 		redirect_uri = 'https://wrowit.herokuapp.com/login/returnface/'
+		# Url de autorizacion
 		url_auth = 'https://graph.facebook.com/v12.0/oauth/access_token'
 
 		resp = requests.get('{0}?client_id={1}&client_secret={2}&code={3}&redirect_uri={4}'.format(url_auth, client_id, client_secret, code, redirect_uri ) )
 
 		try:	
+			# guardar los permisos
 			obj = PermisosF(**resp.json())
 			obj.save()
+
+			# Este es el token de acceso para consumir el api mas delante cuando
+			# entremos en fase 2
 			access_token = resp.json()['access_token']
-			print("getuser ------->>>>>>>>")
-			a = urlencode(self.GetUser(access_token=access_token))
-			print(a)
-			print(type(a))
+
+			# datos de usuario que nos dio permisos
+			datos = self.GetUser(access_token=access_token)
+			a = urlencode(datos)
 			return HttpResponse(a)
 
 		except Exception as e:
