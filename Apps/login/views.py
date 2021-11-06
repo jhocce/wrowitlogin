@@ -60,7 +60,7 @@ class returnface(View):
 	def GetUser(self, access_token):
 		
 		url = 'https://graph.facebook.com/v12.0/me?'
-		campos = 'id,name,email'
+		campos = 'id,name,email,first_name,last_name,gender,languages'
 
 		resp = requests.get("{0}fields={1}&access_token={2}".format(url, campos, access_token))
 		return resp.json()
