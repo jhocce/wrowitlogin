@@ -54,15 +54,16 @@ class redirect(View):
 	def dispatch(self, request, *args, **kwargs):
 		
 		return super(redirect, self).dispatch(request,*args, **kwargs )
-
-		
 	def get(self, request, *args, **kwargs):
 
 		code = self.request.GET.get('code')
 		state = self.request.GET.get('state')
 		scope = self.request.GET.get('scope')
-		p = google_auth_oauthlib.flow.Flow()
-		go = p.fetch_token(code=code)
+
+		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+		   client_secrets_file='client_secret.json',
+		    scopes=[oauth2.GetAPIScope('adwords')])
+		go = flow.fetch_token(code=code)
 		
 		credentials = go.credentials
 
@@ -78,6 +79,6 @@ class redirect(View):
 
 # monto iniciar a subastar 100k
 
-# corroborar la identidad del subastador antes de publicar su oferta
+corroborar la identidad del subastador antes de publicar su oferta
 
 
