@@ -11,9 +11,37 @@ from facebook_business.api import FacebookAdsApi
 
 from .models import PermisosF
 
+class goo(View):
+
+	template_name = ''
+
+
+	def dispatch(self, request, *args, **kwargs):
+		
+		return super(googlev, self).dispatch(request,*args, **kwargs )
+	def get(self, request, *args, **kwargs):
+		import google.oauth2.credentials
+		import google_auth_oauthlib.flow
+
+
+		# Initialize the flow using the client ID and secret downloaded earlier.
+		# Note: You can use the GetAPIScope helper function to retrieve the
+		# appropriate scope for AdWords or Ad Manager.
+		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+		    'client_secret.json',
+		    scope=[oauth2.GetAPIScope('adwords')])
+		# Indicate where the API server will redirect the user after the user completes
+		# the authorization flow. The redirect URI is required.
+		flow.redirect_uri = 'https://www.example.com/oauth2callback'
+		return render(request, self.template_name ,{})
+
+
+
+
+
 
 class googlev(View):
-	
+
 	template_name = 'googlee41be98abcadb5cd.html'
 
 
