@@ -1,11 +1,11 @@
 
 from django.conf.urls import url
-from .views import goo, googlev, redirect
+from .views import goo, googlev, redirectgo
 
 urlpatterns = [
 
 	url(r'^goo/$', goo.as_view(), name="goo"),
-	url(r'^redirect/$', redirect.as_view(), name="goore"),
+	url(r'^redirect/$', redirectgo.as_view(), name="redirectgo"),
 	url(r'^googlee41be98abcadb5cd.html$', googlev.as_view(), name="googlev"),
 	# url(r'^face/$', loginface.as_view(), name="loginface"),
 	# url(r'^returnface/$', returnface.as_view(), name="returnface"),

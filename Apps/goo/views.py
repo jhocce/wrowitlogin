@@ -48,12 +48,12 @@ class goo(View):
 
 
 
-class redirect(View):
+class redirectgo(View):
 
 	template_name = ''
 	def dispatch(self, request, *args, **kwargs):
 		
-		return super(redirect, self).dispatch(request,*args, **kwargs )
+		return super(redirectgo, self).dispatch(request,*args, **kwargs )
 	def get(self, request, *args, **kwargs):
 
 		code = self.request.GET.get('code')
