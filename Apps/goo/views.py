@@ -59,9 +59,23 @@ class redirect(View):
 		code = self.request.GET.get('code')
 		state = self.request.GET.get('state')
 		scope = self.request.GET.get('scope')
-		go = google_auth_oauthlib.flow.Flow.fetch_token(code=code)
+		p = google_auth_oauthlib.flow()
+		go = p.Flow.fetch_token(code=code)
 		
 		credentials = go.credentials
 
 
 		return HttpResponse("---->> {0} ".format(credentials) )
+
+
+
+
+# implimentar multidioma 
+
+# *** con migo **
+
+# monto iniciar a subastar 100k
+
+# corroborar la identidad del subastador antes de publicar su oferta
+
+
