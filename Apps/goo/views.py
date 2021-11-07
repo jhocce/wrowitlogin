@@ -11,6 +11,21 @@ from googleads import oauth2
 
 # from .models import PermisosF
 
+
+
+class googlev(View):
+
+	template_name = 'googlee41be98abcadb5cd.html'
+
+
+	def dispatch(self, request, *args, **kwargs):
+		
+		return super(googlev, self).dispatch(request,*args, **kwargs )
+	def get(self, request, *args, **kwargs):
+		return render(request, self.template_name ,{})
+
+
+
 class goo(View):
 
 	template_name = ''
