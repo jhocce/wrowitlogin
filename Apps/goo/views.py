@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.views.generic import ListView, View, RedirectView
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
-import google.oauth2.credentials
 import google_auth_oauthlib.flow
 from googleads import oauth2
 
