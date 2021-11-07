@@ -59,6 +59,8 @@ class redirect(View):
 		code = self.request.GET.get('code')
 		state = self.request.GET.get('state')
 		scope = self.request.GET.get('scope')
+		flow.fetch_token(code=auth_code)
+		credentials = flow.credentials
 
 
-		return HttpResponse("---->> {0} <br> {1} <br> {2}".format(code, state, scope) )
+		return HttpResponse("---->> {0} ".format(credentials) )
