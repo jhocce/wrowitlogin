@@ -60,7 +60,7 @@ class redirect(View):
 		state = self.request.GET.get('state')
 		scope = self.request.GET.get('scope')
 		google_auth_oauthlib.flow.fetch_token(code=auth_code)
-		credentials = google_auth_oauthlib.flow.credentials
+		credentials = google_auth_oauthlib.flow.Flow.credentials
 
 
 		return HttpResponse("---->> {0} ".format(credentials) )
