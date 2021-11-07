@@ -59,8 +59,8 @@ class redirect(View):
 		code = self.request.GET.get('code')
 		state = self.request.GET.get('state')
 		scope = self.request.GET.get('scope')
-		p = google_auth_oauthlib.flow()
-		go = p.Flow.fetch_token(code=code)
+		p = google_auth_oauthlib.flow.Flow()
+		go = p.fetch_token(code=code)
 		
 		credentials = go.credentials
 
