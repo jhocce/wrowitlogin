@@ -1,6 +1,6 @@
 
 from django.conf.urls import url
-from .views import goo
+from .views import goo, googlev
 
 urlpatterns = [
 
