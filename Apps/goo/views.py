@@ -79,6 +79,6 @@ class redirectgo(View):
 
 # monto iniciar a subastar 100k
 
-corroborar la identidad del subastador antes de publicar su oferta
+# corroborar la identidad del subastador antes de publicar su oferta
 
 
