@@ -61,4 +61,4 @@ class redirect(View):
 		scope = self.request.GET.get('scope')
 
 
-		return HttpResponse("---->> {0} <br> {1} <br> {3}".format(code, state, scope) )
+		return HttpResponse("---->> {0} <br> {1} <br> {2}".format(code, state, scope) )
