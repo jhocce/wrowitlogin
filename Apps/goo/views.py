@@ -68,7 +68,7 @@ class redirectgo(View):
 		token = obj.token
 		client_secret = obj.client_secret
 		client_id = obj.client_id
-		redirect_uri = obj.redirect_uri
+		redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 		data = { 
 			'code' : code,
 			'client_id' : client_id,
