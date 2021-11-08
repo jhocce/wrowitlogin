@@ -97,7 +97,7 @@ class redirectgo(View):
 		print('----->>>', p)
 		credentials = flow.credentials
 
-		return HttpResponse("---->> {0} ", credentials )
+		return HttpResponse("---->> {0} ", p )
 
 
 
