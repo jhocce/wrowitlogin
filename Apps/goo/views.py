@@ -84,7 +84,8 @@ class redirectgo(View):
 		    scopes=[oauth2.GetAPIScope('adwords'), 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']) 
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
-		flow.fetch_token(code=code)
+		p= flow.fetch_token(code=code)
+		print('----->>>', p)
 		credentials = flow.credentials
 
 		return HttpResponse("---->> {0} ", credentials )
