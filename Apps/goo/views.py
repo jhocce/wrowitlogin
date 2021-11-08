@@ -1,6 +1,8 @@
 import requests
 from urllib.parse import urlencode
 
+from collections import deque
+
 from django.shortcuts import render
 from django.views.generic import ListView, View, RedirectView
 from django.http import HttpResponse
@@ -38,7 +40,7 @@ class goo(View):
 
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		    scopes=['https://www.googleapis.com/auth/adwords', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
+		    scopes = deque(['https://www.googleapis.com/auth/adwords', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'])
 		     )
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 		authorization_url, state = flow.authorization_url(
@@ -92,7 +94,7 @@ class redirectgo(View):
 		print("pppppppppppppppppppp",scope)
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		    scopes=['https://www.googleapis.com/auth/adwords', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
+		   scopes = deque(['https://www.googleapis.com/auth/adwords', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'])
 		     )
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
