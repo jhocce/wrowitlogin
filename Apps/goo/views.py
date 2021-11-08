@@ -38,7 +38,7 @@ class goo(View):
 
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		    scopes=[oauth2.GetAPIScope('adwords')])
+		    scopes=[oauth2.GetAPIScope('adwords'), 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'])
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 		authorization_url, state = flow.authorization_url(
 		access_type='offline',
@@ -67,18 +67,18 @@ class redirectgo(View):
 		
 		# credentials = go.credentials
 
-		try:
-			data = requests.post('https://www.googleapis.com/oauth2/v4/token',
-				{
-					'code' : code,
-					'client_id' : '558376713536-hehho8pmk7lcbn7vumtmstikpjat85s6.apps.googleusercontent.com',
-					'client_secret' : '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',
-					'redirect_uri' : 'https://wrowit.herokuapp.com/',
-					'grant_type' : 'authorization_code'
-				})
-			print("--------", data.json() )
-		except Exception as e:
-			data = e
+		# try:
+		# 	data = requests.post('https://www.googleapis.com/oauth2/v4/token',
+		# 		{
+		# 			'code' : code,
+		# 			'client_id' : '558376713536-hehho8pmk7lcbn7vumtmstikpjat85s6.apps.googleusercontent.com',
+		# 			'client_secret' : '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',
+		# 			'redirect_uri' : 'https://wrowit.herokuapp.com/',
+		# 			'grant_type' : 'authorization_code'
+		# 		})
+		# 	print("--------", data.json() )
+		# except Exception as e:
+		# 	data = e
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
 		    scopes=[oauth2.GetAPIScope('adwords')])
