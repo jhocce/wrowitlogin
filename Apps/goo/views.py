@@ -62,7 +62,7 @@ class redirectgo(View):
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
 
 
-	def GetRefreshToken(self, cod=code, obj=obj):
+	def GetRefreshToken(self, code, obj):
 
 
 		# flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
@@ -82,7 +82,7 @@ class redirectgo(View):
 		client_id = obj.client_id
 		redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 		data = { 
-			'code' : cod,
+			'code' : code,
 			'client_id' : client_id,
 			'client_secret' : client_secret,
 			'redirect_uri' : redirect_uri,
