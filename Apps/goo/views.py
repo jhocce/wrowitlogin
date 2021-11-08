@@ -79,6 +79,8 @@ class redirectgo(View):
 		# 	print("--------", data.json() )
 		# except Exception as e:
 		# 	data = e
+
+		print("pppppppppppppppppppp",scope)
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
 		     scopes=scope
