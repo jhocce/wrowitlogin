@@ -68,7 +68,7 @@ class redirectgo(View):
 		# credentials = go.credentials
 
 
-		data = request.post('https://www.googleapis.com/oauth2/v4/token',
+		data = requests.post('https://www.googleapis.com/oauth2/v4/token',
 		{
 			'code' : code,
 			'client_id' : '558376713536-hehho8pmk7lcbn7vumtmstikpjat85s6.apps.googleusercontent.com',
