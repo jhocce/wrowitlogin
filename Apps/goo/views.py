@@ -94,10 +94,10 @@ class redirectgo(View):
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
 		p= flow.fetch_token(code=code)
-		print('----->>>', p)
+		print('----->>>', dir(p))
 		credentials = flow.credentials
 
-		return HttpResponse("---->> {0} ", p )
+		return HttpResponse("---->> {0} ", credentials)
 
 
 
