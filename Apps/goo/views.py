@@ -61,6 +61,25 @@ class redirectgo(View):
 		
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
 
+
+	def GetRefreshToken(self,obj):
+
+		url = 'https://www.googleapis.com/oauth2/v4/token'
+		token = obj.token
+		client_secret = obj.client_secret
+		client_id = obj.client_id
+		redirect_uri = obj.redirect_uri
+		data = { 
+			'code' : code,
+			'client_id' : client_id,
+			'client_secret' : client_secret,
+			'redirect_uri' : redirect_uri,
+			'grant_type' : 'authorization_code'
+			}
+		res = requests.post(url=url, data=data)
+		return res
+
+
 	def GetUser(self, token):
 		try:
 			print("llllllllllllllllllllllls")
@@ -84,9 +103,12 @@ class redirectgo(View):
 
 		flow.fetch_token(code=code)
 		credentialsa = flow.credentials
-		print(dir(credentialsa))
-
-		print(credentialsa.to_json())
+		# print(dir(credentialsa))
+		print("--------------------------------")
+		print("--------------------------------")
+		print("--------------------------------")
+		print("--------------------------------")
+		print(self.GetRefreshToken(credentialsa))
 		# print(credentialsa.token)
 
 		# json_dat = credentialsa.to_json()
