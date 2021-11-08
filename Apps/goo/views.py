@@ -76,7 +76,7 @@ class redirectgo(View):
 					'redirect_uri' : 'https://wrowit.herokuapp.com/',
 					'grant_type' : 'authorization_code'
 				})
-			print("--------", dir(data) )
+			print("--------", data.json() )
 		except Exception as e:
 			data = e
 		
