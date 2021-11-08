@@ -48,12 +48,12 @@ class goo(View):
 
 # email+profile+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/adwords+https://www.googleapis.com/auth/userinfo.profile+openid
 
-https://www.googleapis.com/auth/openid
-https://www.googleapis.com/auth/userinfo.profile
-https://www.googleapis.com/auth/userinfo.email
-https://www.googleapis.com/auth/adwords
-https://www.googleapis.com/auth/userinfo.profile
-https://www.googleapis.com/auth/userinfo.email
+# https://www.googleapis.com/auth/openid
+# https://www.googleapis.com/auth/userinfo.profile
+# https://www.googleapis.com/auth/userinfo.email
+# https://www.googleapis.com/auth/adwords
+# https://www.googleapis.com/auth/userinfo.profile
+# https://www.googleapis.com/auth/userinfo.email
 
 	template_name = ''
 	def dispatch(self, request, *args, **kwargs):
