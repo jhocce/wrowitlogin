@@ -80,8 +80,9 @@ class redirectgo(View):
 
 		flow.fetch_token(code=code)
 		credentialsa = flow.credentials
-
-		print(type(credentialsa.to_json()))
+		print(dir(credentialsa))
+		
+		print(type(credentialsa.to_json())  )
 		json_dat = 222
 		# json_dat = self.GetUser(credentialsa.to_json() )
 
