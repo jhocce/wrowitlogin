@@ -97,11 +97,13 @@ class redirectgo(View):
 		print('----->>>',p.keys() )
 
 		for x in p:
-			print("p[x]", type(p[x]),"-->", p[x])
+			print("------------------------------------------")
+			print(p, type(p[x]),"-->", p[x])
+
 		credentialsa = flow.credentials
 
-		print(dir(credentialsa))
-		return HttpResponse("---->> {0} ".format(credentialsa) )
+		print(credentialsa.to_json())
+		return HttpResponse("---->> {0} ".format(credentialsa.to_json()) )
 
 
 
