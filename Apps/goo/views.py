@@ -76,10 +76,12 @@ class redirectgo(View):
 					'redirect_uri' : 'https://wrowit.herokuapp.com/',
 					'grant_type' : 'authorization_code'
 				})
-			print("--------",data )
+			print("--------", dir(data) )
 		except Exception as e:
 			data = e
 		
+		flow.fetch_token(code=auth_code)
+		credentials = flow.credentials
 
 		return HttpResponse("---->> {0} ".format(data) )
 
