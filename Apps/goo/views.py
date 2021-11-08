@@ -62,35 +62,35 @@ class redirectgo(View):
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
 
 
-	def GetRefreshToken(self, state):
+	def GetRefreshToken(self, code=code, obj=obj):
 
 
-		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-				'client_secret.json',
-				scopes=['https://www.googleapis.com/auth/drive.metadata.readonly'],
-				state=state)
-		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
+		# flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+		# 		'client_secret.json',
+		# 		scopes=['https://www.googleapis.com/auth/drive.metadata.readonly'],
+		# 		state=state)
+		# flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
-		authorization_response = self.request.url
-		flow.fetch_token(authorization_response=authorization_response)
+		# authorization_response = self.request.url
+		# flow.fetch_token(authorization_response=authorization_response)
 
-		credentials = flow.credentials
-		print("--------------> ", dir(credentials))
-		# url = 'https://www.googleapis.com/oauth2/v4/token'
-		# token = obj.token
-		# client_secret = obj.client_secret
-		# client_id = obj.client_id
-		# redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
-		# data = { 
-		# 	'code' : code,
-		# 	'client_id' : client_id,
-		# 	'client_secret' : client_secret,
-		# 	'redirect_uri' : redirect_uri,
-		# 	'grant_type' : 'authorization_code'
-		# 	}
+		# credentials = flow.credentials
+		# print("--------------> ", dir(credentials))
+		url = 'https://oauth2.googleapis.com/token'
+		token = obj.token
+		client_secret = obj.client_secret
+		client_id = obj.client_id
+		redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
+		data = { 
+			'code' : code,
+			'client_id' : client_id,
+			'client_secret' : client_secret,
+			'redirect_uri' : redirect_uri,
+			'grant_type' : 'authorization_code'
+			}
 		# print(data)
-		# res = requests.post(url=url, data=data)
-		return credentials.refresh_token
+		res = requests.post(url=url, data=data)
+		return res
 
 
 	def GetUser(self, token):
@@ -121,7 +121,7 @@ class redirectgo(View):
 		print("--------------------------------")
 		print("--------------------------------")
 		print("--------------------------------")
-		print(self.GetRefreshToken(state=state ) )
+		print(self.GetRefreshToken(code=code, obj=credentialsa ) )
 		# print(credentialsa.token)
 
 		# json_dat = credentialsa.to_json()
