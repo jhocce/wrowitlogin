@@ -68,15 +68,15 @@ class redirectgo(View):
 		# credentials = go.credentials
 
 
-	    data = request.post('https://www.googleapis.com/oauth2/v4/token',
-	      { 
-	        'code' : code,
-	        'client_id' : '558376713536-hehho8pmk7lcbn7vumtmstikpjat85s6.apps.googleusercontent.com',
-	        'client_secret' : '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',
-	        'redirect_uri' : 'https://wrowit.herokuapp.com/',
-	        'grant_type' : 'authorization_code'
-	      })
-	     
+		data = request.post('https://www.googleapis.com/oauth2/v4/token',
+		{
+			'code' : code,
+			'client_id' : '558376713536-hehho8pmk7lcbn7vumtmstikpjat85s6.apps.googleusercontent.com',
+			'client_secret' : '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',
+			'redirect_uri' : 'https://wrowit.herokuapp.com/',
+			'grant_type' : 'authorization_code'
+		})
+
 		return HttpResponse("---->> {0} ".format(data) )
 
 
