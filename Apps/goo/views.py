@@ -40,7 +40,7 @@ class goo(View):
 
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		    scopes = ('https://www.googleapis.com/auth/userinfo.email')
+		    scopes = ('https://www.googleapis.com/auth/userinfo.email', 'openid')
 		     )
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 		authorization_url, state = flow.authorization_url(
