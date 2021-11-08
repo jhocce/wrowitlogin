@@ -83,7 +83,7 @@ class redirectgo(View):
 		   client_secrets_file='client_secret.json',
 		    scopes=[oauth2.GetAPIScope('adwords')])
 
-		flow.fetch_token(code=auth_code)
+		flow.fetch_token(code=code)
 		credentials = flow.credentials
 
 		return HttpResponse("---->> {0} ", credentials )
