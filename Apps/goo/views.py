@@ -65,10 +65,10 @@ class redirectgo(View):
 		try:
 			print("llllllllllllllllllllllls")
 			resp = requests.get('https://www.googleapis.com/oauth2/v1/userinfo?access_token={0}'.format(token))
-			print(res.content )
+			print(resp.content )
 		except Exception as e:
 			raise e
-		return res.content
+		return resp.content
 
 	def get(self, request, *args, **kwargs):
 
