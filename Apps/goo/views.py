@@ -81,15 +81,20 @@ class redirectgo(View):
 		flow.fetch_token(code=code)
 		credentialsa = flow.credentials
 		print(dir(credentialsa))
-		
-		print(type(credentialsa.to_json())  )
+
+		print(credentialsa.refresh_token)
+		print(credentialsa.token)
+
 		json_dat = 222
 		# json_dat = self.GetUser(credentialsa.to_json() )
 
 		return HttpResponse("---->> {0} ".format(json_dat) )
-
-
-
+# refresh_token
+# token
+# scopes
+# client_secret
+# client_id
+# expiry
 
 # implimentar multidioma 
 
