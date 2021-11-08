@@ -82,7 +82,7 @@ class redirectgo(View):
 		credentialsa = flow.credentials
 		print(dir(credentialsa))
 
-		print(credentialsa.refresh_token)
+		print(credentialsa.refresh_token())
 		print(credentialsa.token)
 
 		json_dat = 222
