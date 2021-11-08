@@ -81,7 +81,8 @@ class redirectgo(View):
 		# 	data = e
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		     scopes=['https://www.googleapis.com/auth/userinfo.profile'])
+		     # scopes=['https://www.googleapis.com/auth/userinfo.profile']
+		     )
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
 		p= flow.fetch_token(code=code)
