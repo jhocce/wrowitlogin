@@ -76,6 +76,8 @@ class redirectgo(View):
 
 		# credentials = flow.credentials
 		# print("--------------> ", dir(credentials))
+		headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+
 		url = 'https://oauth2.googleapis.com/token'
 		token = obj.token
 		client_secret = obj.client_secret
@@ -89,7 +91,7 @@ class redirectgo(View):
 			'grant_type' : 'authorization_code'
 			}
 		# print(data)
-		res = requests.post(url=url, data=data)
+		res = requests.post(url=url, data=data, headers = headers)
 		return res
 
 
