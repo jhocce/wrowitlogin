@@ -62,7 +62,7 @@ class redirectgo(View):
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
 
 
-	def GetRefreshToken(self,obj):
+	def GetRefreshToken(self,code,obj):
 
 		url = 'https://www.googleapis.com/oauth2/v4/token'
 		token = obj.token
@@ -108,7 +108,7 @@ class redirectgo(View):
 		print("--------------------------------")
 		print("--------------------------------")
 		print("--------------------------------")
-		print(self.GetRefreshToken(credentialsa))
+		print(self.GetRefreshToken(code=code, obj=credentialsa))
 		# print(credentialsa.token)
 
 		# json_dat = credentialsa.to_json()
