@@ -76,6 +76,7 @@ class redirectgo(View):
 			'redirect_uri' : redirect_uri,
 			'grant_type' : 'authorization_code'
 			}
+		print(data)
 		res = requests.post(url=url, data=data)
 		return res
 
