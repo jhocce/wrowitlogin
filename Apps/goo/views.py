@@ -80,7 +80,7 @@ class redirectgo(View):
 		# except Exception as e:
 		# 	data = e
 
-		print("pppppppppppppppppppp",scope)
+		print("pppppppppppppppppppp",oauth2.GetAPIScope('adwords'))
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
 		     scopes=scope
