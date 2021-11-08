@@ -60,50 +60,32 @@ class redirectgo(View):
 	def dispatch(self, request, *args, **kwargs):
 		
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
+
+	def GetUser(self, token):
+		
+		resp = requests.get('https://www.googleapis.com/oauth2/v1/userinfo?access_token={0}'.format(token))
+		return resp
+
 	def get(self, request, *args, **kwargs):
 
 		code = self.request.GET.get('code')
 		state = self.request.GET.get('state')
 		scope = self.request.GET.get('scope')
 
-		# flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-		#    client_secrets_file='client_secret.json',
-		#     scopes=[oauth2.GetAPIScope('adwords')])
-		# go = flow.fetch_token(code=code)
-		
-		# credentials = go.credentials
-
-		# try:
-		# 	data = requests.post('https://www.googleapis.com/oauth2/v4/token',
-		# 		{
-		# 			'code' : code,
-		# 			'client_id' : '558376713536-hehho8pmk7lcbn7vumtmstikpjat85s6.apps.googleusercontent.com',
-		# 			'client_secret' : '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',
-		# 			'redirect_uri' : 'https://wrowit.herokuapp.com/',
-		# 			'grant_type' : 'authorization_code'
-		# 		})
-		# 	print("--------", data.json() )
-		# except Exception as e:
-		# 	data = e
-
-		print("pppppppppppppppppppp",scope)
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
 		   scopes = ('https://www.googleapis.com/auth/adwords', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email', 'openid')
 		     )
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
-		p= flow.fetch_token(code=code)
-		print('----->>>',p.keys() )
-
-		for x in p:
-			print("------------------------------------------")
-			print(p, type(p[x]),"-->", p[x])
-
+		flow.fetch_token(code=code)
 		credentialsa = flow.credentials
 
-		print(credentialsa.to_json())
-		return HttpResponse("---->> {0} ".format(credentialsa.to_json()) )
+		print(credentialsa.to_json()['token'])
+
+		json_dat = self.GetUser(credentialsa.to_json()['token'])
+
+		return HttpResponse("---->> {0} ".format(json_dat) )
 
 
 
