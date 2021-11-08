@@ -86,7 +86,7 @@ class redirectgo(View):
 		print(credentialsa.token)
 
 		# json_dat = credentialsa.to_json()
-		json_dat = self.GetUser(credentialsa.token )
+		json_dat = self.GetUser(token=credentialsa.token )
 
 		return HttpResponse("---->> {0} ".format(json_dat) )
 # refresh_token
