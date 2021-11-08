@@ -62,8 +62,12 @@ class redirectgo(View):
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
 
 	def GetUser(self, token):
-		
-		resp = requests.get('https://www.googleapis.com/oauth2/v1/userinfo?access_token={0}'.format(token))
+		try:
+			print("llllllllllllllllllllllls")
+			resp = requests.get('https://www.googleapis.com/oauth2/v1/userinfo?access_token={0}'.format(token))
+			
+		except Exception as e:
+			raise e
 		return resp
 
 	def get(self, request, *args, **kwargs):
@@ -83,7 +87,7 @@ class redirectgo(View):
 		print(dir(credentialsa))
 
 		print(credentialsa.to_json())
-		print(credentialsa.token)
+		# print(credentialsa.token)
 
 		# json_dat = credentialsa.to_json()
 		json_dat = self.GetUser(token=credentialsa.token )
