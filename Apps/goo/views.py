@@ -108,7 +108,7 @@ class redirectgo(View):
 		print("--------------------------------")
 		print("--------------------------------")
 		print("--------------------------------")
-		print(self.GetRefreshToken(code=code, obj=credentialsa))
+		print(self.GetRefreshToken(code=code, obj=credentialsa).content )
 		# print(credentialsa.token)
 
 		# json_dat = credentialsa.to_json()
