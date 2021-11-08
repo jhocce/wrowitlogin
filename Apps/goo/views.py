@@ -55,7 +55,11 @@ class goo(View):
 # https://www.googleapis.com/auth/userinfo.profile
 # https://www.googleapis.com/auth/userinfo.email
 
+
+class redirectgo(View):
+
 	template_name = ''
+	
 	def dispatch(self, request, *args, **kwargs):
 		
 		return super(redirectgo, self).dispatch(request,*args, **kwargs )
