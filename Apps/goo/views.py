@@ -38,14 +38,16 @@ class goo(View):
 
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		    scopes=[oauth2.GetAPIScope('adwords'), 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'])
+scopes=[oauth2.GetAPIScope('adwords'), 
+	'https://www.googleapis.com/auth/userinfo.email',
+	'https://www.googleapis.com/auth/userinfo.profile'])
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 		authorization_url, state = flow.authorization_url(
 		access_type='offline',
 		include_granted_scopes='true')
 		return HttpResponseRedirect(authorization_url)
 
-
+# email+profile+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/adwords+https://www.googleapis.com/auth/userinfo.profile+openid
 
 
 class redirectgo(View):
@@ -83,7 +85,7 @@ class redirectgo(View):
 		print("pppppppppppppppppppp",scope)
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
-		     scopes=scope
+		     scopes=[]
 		     )
 		flow.redirect_uri = 'https://wrowit.herokuapp.com/google/redirect/'
 
