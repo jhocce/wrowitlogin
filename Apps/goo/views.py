@@ -79,10 +79,7 @@ class redirectgo(View):
 		# 	print("--------", data.json() )
 		# except Exception as e:
 		# 	data = e
-		flow = google_auth_oauthlib.flow.Flow(
-			 oauth2session = 'web'
-        	client_type,
-        	client_config,
+		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 		   client_secrets_file='client_secret.json',
 		     scopes=scope
 		     )
