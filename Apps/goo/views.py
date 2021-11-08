@@ -97,7 +97,7 @@ class redirectgo(View):
 		print('----->>>',p.keys() )
 
 		for x in p:
-			print("p[x]", len(p[x]))
+			print("p[x]", type(p[x]),"-->", p[x])
 		credentialsa = flow.credentials
 
 		print(dir(credentialsa))
