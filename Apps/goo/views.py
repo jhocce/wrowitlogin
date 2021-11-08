@@ -95,8 +95,12 @@ class redirectgo(View):
 
 		p= flow.fetch_token(code=code)
 		print('----->>>',p.keys() )
+
+		for x in p:
+			print("p[x]", len(p[x]))
 		credentialsa = flow.credentials
-		print(credentialsa)
+
+		print(dir(credentialsa))
 		return HttpResponse("---->> {0} ".format(credentialsa) )
 
 
