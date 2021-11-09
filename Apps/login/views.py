@@ -14,7 +14,7 @@ from .models import PermisosF
 
 class loginface(View):
 
-	"""  """
+	""" vista que inicia el proceso de autenticacion por acceso a url """
 
 
 	template_name = 'index.html'
@@ -33,13 +33,12 @@ class loginface(View):
 		url_autorizacion = 'https://www.facebook.com/v12.0/dialog/oauth'
 		redirect_uri = 'https://wrowit.herokuapp.com/login/returnface/'
 		return HttpResponseRedirect("{0}?response_type=code&client_id={1}&redirect_uri={2}&state=1212&scope=email".format(url_autorizacion,client_id,redirect_uri ))
-# graph.facebook.com/v12.0/me/?access_token=EAAGgdYaMOO0BAOOY3wwxS4SWDx5pgUEWiZAqZAzyPYnuvmjthlOpF76QHnqqD2XPtBDjwfN3F2lXN5fWmLcFsmcSXgT4SzjxZChEjgH6nbZBhm7qvqaIdAsMmZBxEP2NTcrnfm38nbJY10lDsqkNalEmJ8jjHrgwDB77bZAeZClZCvBb0bQGVmm2okaZAWqe1v7K1TWZA23kmyygZDZD
 
 
 
 class returnface(View):
-	"""
-	"""
+	""" Esta vista solo nos sirve para recibir los parametros por url 
+	para poder pedir el refresh token y consumir el API """
 
 	template_name = 'ali/index.html'
 	
