@@ -32,8 +32,8 @@ class loginface(View):
 		
 		url_autorizacion = 'https://www.facebook.com/v12.0/dialog/oauth'
 		redirect_uri = 'https://wrowit.herokuapp.com/login/returnface/'
-		return HttpResponseRedirect("{0}?response_type=code&client_id={1}&redirect_uri={2}&state=1212".format(url_autorizacion,client_id,redirect_uri ))
-
+		return HttpResponseRedirect("{0}?response_type=code&client_id={1}&redirect_uri={2}&state=1212&scope=email".format(url_autorizacion,client_id,redirect_uri ))
+# graph.facebook.com/v12.0/me/?access_token=EAAGgdYaMOO0BAOOY3wwxS4SWDx5pgUEWiZAqZAzyPYnuvmjthlOpF76QHnqqD2XPtBDjwfN3F2lXN5fWmLcFsmcSXgT4SzjxZChEjgH6nbZBhm7qvqaIdAsMmZBxEP2NTcrnfm38nbJY10lDsqkNalEmJ8jjHrgwDB77bZAeZClZCvBb0bQGVmm2okaZAWqe1v7K1TWZA23kmyygZDZD
 
 
 
@@ -51,12 +51,12 @@ class returnface(View):
 	def GetUser(self, access_token):
 		""" Funcion de obtiene los datos del usuario que nos dio autorizacion """
 		# url de la peticion
-		url = 'https://graph.facebook.com/v12.0/me?'
+		url = 'https://graph.facebook.com/me?'
 		# campos que se esperan consultar
 		campos = 'id,name,email,first_name,last_name,gender,languages'
 		resp = requests.get("{0}fields={1}&access_token={2}".format(url, campos, access_token))
 		return resp.json()
-
+		# https://graph.facebook.com/4453085001435900?fields=email&access_token=EAAGgdYaMOO0BAOOY3wwxS4SWDx5pgUEWiZAqZAzyPYnuvmjthlOpF76QHnqqD2XPtBDjwfN3F2lXN5fWmLcFsmcSXgT4SzjxZChEjgH6nbZBhm7qvqaIdAsMmZBxEP2NTcrnfm38nbJY10lDsqkNalEmJ8jjHrgwDB77bZAeZClZCvBb0bQGVmm2okaZAWqe1v7K1TWZA23kmyygZDZD
 
 	def get(self, request,  *args, **kwargs):
 		# datos de la app otra vez...
